@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name" translatable="false">Dragon Name Generator</string>
+    <string name="your_name" translatable="false">Your Name</string>
+    <string name="your_father_name" translatable="false">Your Father Name</string>
+    <string name="your_mother_name" translatable="false">Your Mother Name</string>
+    <string name="check_your_dragon_name" translatable="false">Check Your Dragon Name</string>
+    <string name="your_dragon_name" translatable="false">Dragon Name</string>
+    <string name="view_of_dragon" translatable="false">View of Dragon</string>
+    <string name="your_last_name" translatable="false">Your Last Name</string>
+    <string name="your_dragon_name_is" translatable="false">Your dragon name is...</string>
+    <string name="gradient_black_to_opacity" translatable="false">gradient black to opacity</string>
+    <string name="reset" translatable="false">reset</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-4844192903995686/7447470250</string>
+    <string name="your_entries_are_used_only_for_generate_dragon_name_and_are_not_collected" translatable="false">Your entries are used only for generate dragon name and are not collected</string>
+</resources>
