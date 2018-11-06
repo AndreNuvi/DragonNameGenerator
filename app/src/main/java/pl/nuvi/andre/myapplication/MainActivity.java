@@ -25,16 +25,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mainmenu, menu);
-
-
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         switch (item.getItemId()) {
 
             case R.id.action_info:
@@ -44,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 //        requestNewInterstitial();
-
 
         buttonGenerate.setOnClickListener(new View.OnClickListener() {
             @Override

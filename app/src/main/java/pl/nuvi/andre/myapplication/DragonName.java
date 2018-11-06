@@ -32,7 +32,6 @@ public class DragonName extends AppCompatActivity implements RewardedVideoAdList
     private RewardedVideoAd mRewardedVideoAd;
     private boolean rewardGain;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +60,6 @@ public class DragonName extends AppCompatActivity implements RewardedVideoAdList
                 if (mRewardedVideoAd.isLoaded()) {
                     mRewardedVideoAd.show();
                 }
-
             }
         });
 
