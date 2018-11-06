@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/backMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#060825"
@@ -30,22 +29,30 @@
                 android:id="@+id/yourNameEditTextActivityMainId"
                 style="@style/NamesStyle"
                 android:hint="@string/your_name"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="15dp"
+                tools:ignore="Autofill"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/yourSurnameEditTextActivityMainId"
                 style="@style/NamesStyle"
-                android:hint="@string/your_last_name" />
+                android:hint="@string/your_last_name"
+                tools:ignore="Autofill"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/yourFatherNameEditTextActivityMainId"
                 style="@style/NamesStyle"
-                android:hint="@string/your_father_name" />
+                android:hint="@string/your_father_name"
+                tools:ignore="Autofill"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/yourMotherNameActivityMainId"
                 style="@style/NamesStyle"
-                android:hint="@string/your_mother_name" />
+                android:hint="@string/your_mother_name"
+                tools:ignore="Autofill"
+                android:inputType="text" />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -15,7 +15,7 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        TextView txtPrivacy = (TextView) findViewById(R.id.privacyPolicy);
+        TextView txtPrivacy = findViewById(R.id.privacyPolicy);
 
         txtPrivacy.setPaintFlags(txtPrivacy.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         txtPrivacy.setOnClickListener(new View.OnClickListener() {

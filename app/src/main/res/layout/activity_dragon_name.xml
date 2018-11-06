@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,7 +52,8 @@
                         android:layout_marginEnd="20dp"
                         android:layout_marginRight="20dp"
                         android:textColor="#aaFFFFFF"
-                        android:textSize="5sp" />
+                        android:textSize="5sp"
+                        tools:ignore="SmallSp" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -62,7 +64,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -92,9 +93,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-
-
-                    android:text="Want this name in dragon's language? \n Click in this ad" />
+                    android:text="@string/want_this_name" />
 
 
 
@@ -103,7 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Your name in dragon's language is...."
+                    android:text="@string/your_name_dragon_is"
                     android:textSize="20sp" />
 
 
@@ -117,7 +116,8 @@
                     android:layout_marginTop="10dp"
                     android:text="dovakin"
                     android:textColor="#FFFFFF"
-                    android:textSize="50sp" />
+                    android:textSize="50sp"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

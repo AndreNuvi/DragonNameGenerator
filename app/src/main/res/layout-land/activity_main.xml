@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/backMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#060825"
@@ -22,22 +21,30 @@
             <EditText
                 android:id="@+id/yourNameEditTextActivityMainId"
                 style="@style/NamesStyle"
-                android:hint="@string/your_name" />
+                android:hint="@string/your_name"
+                tools:ignore="Autofill"
+                android:inputType="text" />
 
             <EditText
                 android:id="@+id/yourSurnameEditTextActivityMainId"
                 style="@style/NamesStyle"
-                android:hint="@string/your_last_name" />
+                android:hint="@string/your_last_name"
+                android:inputType="text"
+                tools:ignore="Autofill"/>
 
             <EditText
                 android:id="@+id/yourFatherNameEditTextActivityMainId"
                 style="@style/NamesStyle"
-                android:hint="@string/your_father_name" />
+                android:hint="@string/your_father_name"
+                android:inputType="text"
+                tools:ignore="Autofill"/>
 
             <EditText
                 android:id="@+id/yourMotherNameActivityMainId"
                 style="@style/NamesStyle"
-                android:hint="@string/your_mother_name" />
+                android:hint="@string/your_mother_name"
+                android:inputType="text"
+                tools:ignore="Autofill"/>
 
             <Button
                 android:id="@+id/checkYourDragonNameButtonActivityMainID"

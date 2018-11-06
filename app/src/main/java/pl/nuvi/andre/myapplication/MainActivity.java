@@ -10,28 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
 
-    String yourName;
-    String yourLastName;
-    String yourMotherName;
-    String yourFatherName;
-    String dragonName;
-
-    EditText editText1;
-    EditText editText2;
-    EditText editText3;
-    EditText editText4;
-    Button buttonGenerate;
-    Button buttonReset;
-    InterstitialAd mInterstitialAd;
+    private EditText editText1;
+    private EditText editText2;
+    private EditText editText3;
+    private EditText editText4;
+    //private InterstitialAd mInterstitialAd;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,17 +50,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        editText1 = (EditText) findViewById(R.id.yourNameEditTextActivityMainId);
-        editText2 = (EditText) findViewById(R.id.yourSurnameEditTextActivityMainId);
-        editText3 = (EditText) findViewById(R.id.yourFatherNameEditTextActivityMainId);
-        editText4 = (EditText) findViewById(R.id.yourMotherNameActivityMainId);
-        buttonGenerate = (Button) findViewById(R.id.checkYourDragonNameButtonActivityMainID);
-        buttonReset = (Button) findViewById(R.id.resetButtonActivityMainID);
-
+        editText1 = findViewById(R.id.yourNameEditTextActivityMainId);
+        editText2 = findViewById(R.id.yourSurnameEditTextActivityMainId);
+        editText3 = findViewById(R.id.yourFatherNameEditTextActivityMainId);
+        editText4 = findViewById(R.id.yourMotherNameActivityMainId);
+        Button buttonGenerate = findViewById(R.id.checkYourDragonNameButtonActivityMainID);
+        Button buttonReset = findViewById(R.id.resetButtonActivityMainID);
 
         //Banner Ad
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-4844192903995686~1540537457");
-        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
@@ -91,10 +79,9 @@ public class MainActivity extends AppCompatActivity {
         buttonGenerate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 // Turn of interstitial Add
-
                 //TODO Make ads every few clicks
-
 //                if (mInterstitialAd.isLoaded()) {
 //                    mInterstitialAd.show();
 //                } else {
@@ -114,18 +101,18 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void requestNewInterstitial() {
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
-        mInterstitialAd.loadAd(adRequest);
-    }
+//    private void requestNewInterstitial() {
+////        AdRequest adRequest = new AdRequest.Builder()
+////                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+////                .build();
+////        mInterstitialAd.loadAd(adRequest);
+////    }
 
     private void beginGenerateDragonName() {
-        yourName = editText1.getText().toString();
-        yourLastName = editText2.getText().toString();
-        yourFatherName = editText3.getText().toString();
-        yourMotherName = editText4.getText().toString();
+        String yourName = editText1.getText().toString();
+        String yourLastName = editText2.getText().toString();
+        String yourFatherName = editText3.getText().toString();
+        String yourMotherName = editText4.getText().toString();
 
         if (yourName.length() == 0) {
             Toast.makeText(MainActivity.this, "Enter your name", Toast.LENGTH_SHORT).show();
@@ -152,9 +139,7 @@ public class MainActivity extends AppCompatActivity {
             String firstTwoLettersOfYourMotherName = yourMotherName.substring(0, 2);
             String lastLetterOfYourFatherName = yourFatherName.substring(yourFatherName.length() - 1);
 
-            dragonName = lastSecondLettersOfYourName.toUpperCase() + lastLettersOfYourName + middleTwoLettersOfYourLastName + firstTwoLettersOfYourMotherName.toLowerCase() + lastLetterOfYourFatherName;
-
-
+            String dragonName = lastSecondLettersOfYourName.toUpperCase() + lastLettersOfYourName + middleTwoLettersOfYourLastName + firstTwoLettersOfYourMotherName.toLowerCase() + lastLetterOfYourFatherName;
             //Send intent
             Intent intent = new Intent(MainActivity.this, DragonName.class);
             intent.putExtra("DragonName", dragonName + "");
@@ -166,9 +151,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         //Reward ad boolean reset
-        boolean reward = false;
         SharedPreferences.Editor editor = getSharedPreferences("Reward", MODE_PRIVATE).edit();
-        editor.putBoolean("Reward", reward);
+        editor.putBoolean("Reward", false);
         editor.apply();
         super.onStart();
     }

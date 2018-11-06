@@ -20,51 +20,40 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 
 public class DragonName extends AppCompatActivity implements RewardedVideoAdListener {
-    //True AD
-    private static final String APP_ID = "ca-app-pub-4844192903995686~1540537457";
+
+    //ADS
     private static final String AD_UNIT_ID = "ca-app-pub-4844192903995686/9344789052";
 
-
-
-    TextView dragonNameText;
-    TextView dovakinNameText;
-    TextView dovakinTitle;
-    ImageView dragonImage;
-    WebView sandaraWebView;
-    String dragonName;
-    TextView videoBanner;
-    ProgressBar progressBar;
+    private TextView dovakinNameText;
+    private TextView dovakinTitle;
+    private String dragonNameString;
+    private TextView videoBanner;
+    private ProgressBar progressBar;
     private RewardedVideoAd mRewardedVideoAd;
-    boolean rewardGain;
+    private boolean rewardGain;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dragon_name);
-        dragonNameText = (TextView) findViewById(R.id.dragonNameTextViewActivityDragonNameId);
-        dragonImage = (ImageView) findViewById(R.id.imageViewActivityDragonNameId);
-        dovakinNameText = (TextView) findViewById(R.id.dovakinText);
-        dovakinTitle = (TextView) findViewById(R.id.dovakinTitle);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        TextView dragonNameText = findViewById(R.id.dragonNameTextViewActivityDragonNameId);
+        ImageView dragonImage = findViewById(R.id.imageViewActivityDragonNameId);
+        dovakinNameText = findViewById(R.id.dovakinText);
+        dovakinTitle = findViewById(R.id.dovakinTitle);
+        progressBar = findViewById(R.id.progressBar);
 
-
-        // //Initialize the reward ads
-        //  MobileAds.initialize(this, APP_ID);
-
+        // Initialize the reward ads
         Typeface typeFaceName = Typeface.createFromAsset(getAssets(), "fonts/ArgosGeorge.ttf");
         dragonNameText.setTypeface(typeFaceName);
 
-
         //Set reward ad
-        videoBanner = (TextView) findViewById(R.id.dovakinBanner);
+        videoBanner = findViewById(R.id.dovakinBanner);
         mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
         mRewardedVideoAd.setRewardedVideoAdListener(this);
         loadRewardedVideoAd();
 
-
         videoBanner.setVisibility(View.INVISIBLE);
-
 
         videoBanner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,9 +65,8 @@ public class DragonName extends AppCompatActivity implements RewardedVideoAdList
             }
         });
 
-
         //WebView operation
-        sandaraWebView = (WebView) findViewById(R.id.sandara);
+        WebView sandaraWebView = findViewById(R.id.sandara);
         String sandaraStyle = "<style>  a{ color: white; text-decoration: none; font-size: 14px}</style>";
         String sandaraLink = "<p align=\"right\"><a href=\"http://sandara.deviantart.com/\">sandara.deviantart.com</a></p>";
         String sandaraOutput = sandaraStyle + sandaraLink;
@@ -86,11 +74,10 @@ public class DragonName extends AppCompatActivity implements RewardedVideoAdList
         sandaraWebView.setBackgroundColor(Color.TRANSPARENT);
 
         Intent in = this.getIntent();
-        dragonName = in.getStringExtra("DragonName");
-        dragonNameText.setText(dragonName);
+        dragonNameString = in.getStringExtra("DragonName");
+        dragonNameText.setText(dragonNameString);
 
-
-        String lastLet = dragonName.substring(2, 3);
+        String lastLet = dragonNameString.substring(2, 3);
 
         switch (lastLet) {
             case "a":
@@ -165,23 +152,17 @@ public class DragonName extends AppCompatActivity implements RewardedVideoAdList
                 break;
         }
 
-
         // Read if you have reward
         SharedPreferences readReward = getSharedPreferences("Reward", MODE_PRIVATE);
         rewardGain = readReward.getBoolean("Reward", false);
 
-        if (rewardGain==true) {
+        if (rewardGain) {
             setReward();
-
-
         } else {
             dovakinNameText.setVisibility(View.GONE);
             dovakinTitle.setVisibility(View.GONE);
-
         }
-
     }
-
 
     @Override
     public void onPause() {
@@ -201,22 +182,17 @@ public class DragonName extends AppCompatActivity implements RewardedVideoAdList
         super.onDestroy();
     }
 
-
     private void loadRewardedVideoAd() {
-        //if (!mRewardedVideoAd.isLoaded()) {
-            mRewardedVideoAd.loadAd(AD_UNIT_ID, new AdRequest.Builder().build());
-       // }
+        mRewardedVideoAd.loadAd(AD_UNIT_ID, new AdRequest.Builder().build());
+
     }
 
     @Override
     public void onRewardedVideoAdLoaded() {
         progressBar.setVisibility(View.GONE);
-
-        if (rewardGain == false) {
+        if (!rewardGain) {
             videoBanner.setVisibility(View.VISIBLE);
         }
-
-
     }
 
     @Override
@@ -235,14 +211,10 @@ public class DragonName extends AppCompatActivity implements RewardedVideoAdList
     public void onRewarded(RewardItem rewardItem) {
 
         //Write boolen reward
-        boolean reward = true;
         SharedPreferences.Editor editor = getSharedPreferences("Reward", MODE_PRIVATE).edit();
-        editor.putBoolean("Reward", reward);
+        editor.putBoolean("Reward", true);
         editor.apply();
-
-       setReward();
-
-
+        setReward();
     }
 
     @Override
@@ -258,23 +230,15 @@ public class DragonName extends AppCompatActivity implements RewardedVideoAdList
 
     }
 
-    public void restartActivity(){
-        finish();
-        overridePendingTransition( 0, 0);
-        startActivity(getIntent());
-        overridePendingTransition( 0, 0);
-    }
-
-    public void setReward(){
+    private void setReward() {
         //Set font to dovakin text
         Typeface typeFace = Typeface.createFromAsset(getAssets(), "fonts/dragon_alphabet.ttf");
         dovakinNameText.setTypeface(typeFace);
-
         dovakinNameText.setVisibility(View.VISIBLE);
         dovakinTitle.setVisibility(View.VISIBLE);
         videoBanner.setVisibility(View.GONE);
-
-        dovakinNameText.setText(dragonName);
+        dovakinNameText.setText(dragonNameString);
 
     }
+
 }
